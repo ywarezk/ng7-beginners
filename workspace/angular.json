@@ -3,31 +3,27 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "workspace": {
-      "root": "",
-      "sourceRoot": "src",
+    "hello-world": {
+      "root": "projects/hello-world/",
+      "sourceRoot": "projects/hello-world/src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss"
-        }
-      },
+      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/workspace",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "outputPath": "dist/hello-world",
+            "index": "projects/hello-world/src/index.html",
+            "main": "projects/hello-world/src/main.ts",
+            "polyfills": "projects/hello-world/src/polyfills.ts",
+            "tsConfig": "projects/hello-world/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/hello-world/src/favicon.ico",
+              "projects/hello-world/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "projects/hello-world/src/styles.css"
             ],
             "scripts": []
           },
@@ -35,8 +31,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/hello-world/src/environments/environment.ts",
+                  "with": "projects/hello-world/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -61,34 +57,34 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "workspace:build"
+            "browserTarget": "hello-world:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "workspace:build:production"
+              "browserTarget": "hello-world:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "workspace:build"
+            "browserTarget": "hello-world:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "main": "projects/hello-world/src/test.ts",
+            "polyfills": "projects/hello-world/src/polyfills.ts",
+            "tsConfig": "projects/hello-world/tsconfig.spec.json",
+            "karmaConfig": "projects/hello-world/karma.conf.js",
             "styles": [
-              "src/styles.scss"
+              "projects/hello-world/src/styles.css"
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/hello-world/src/favicon.ico",
+              "projects/hello-world/src/assets"
             ]
           }
         },
@@ -96,8 +92,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "projects/hello-world/tsconfig.app.json",
+              "projects/hello-world/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -106,27 +102,62 @@
         }
       }
     },
-    "workspace-e2e": {
-      "root": "e2e/",
+    "hello-world-e2e": {
+      "root": "projects/hello-world-e2e/",
       "projectType": "application",
       "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "workspace:serve"
+            "protractorConfig": "projects/hello-world-e2e/protractor.conf.js",
+            "devServerTarget": "hello-world:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "workspace:serve:production"
+              "devServerTarget": "hello-world:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
+            "tsConfig": "projects/hello-world-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "auth": {
+      "root": "projects/auth",
+      "sourceRoot": "projects/auth/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/auth/tsconfig.lib.json",
+            "project": "projects/auth/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/auth/src/test.ts",
+            "tsConfig": "projects/auth/tsconfig.spec.json",
+            "karmaConfig": "projects/auth/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/auth/tsconfig.lib.json",
+              "projects/auth/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
@@ -135,5 +166,5 @@
       }
     }
   },
-  "defaultProject": "workspace"
+  "defaultProject": "hello-world"
 }
