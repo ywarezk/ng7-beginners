@@ -1,0 +1,18 @@
+{
+  "name": "02-Typescript",
+  "version": "1.0.0",
+  "description": "- install and init typescript\r - tsconfig.json\r - declare variables with let/const/var\r - static types\r - primitives\r - Array, Object\r - Functions\r - Classes\r - inheritance\r - Abstract Class\r - Generic types\r - interface\r - this in js\r - lambda functions\r - decorators\r - Modules",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.2.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}
