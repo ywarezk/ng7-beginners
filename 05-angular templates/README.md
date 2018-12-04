@@ -14,6 +14,7 @@ The template language is based on HTML but there is more to understand and learn
 - extending the template with a new selector
 - passing data to child
 - passing event from child to parent
+- TRV
 - ngClass
 - ngStyle
 - ngIf
