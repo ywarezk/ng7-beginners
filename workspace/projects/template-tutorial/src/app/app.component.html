@@ -1,0 +1,102 @@
+<h1>
+  Template Lesson
+</h1>
+
+<!-- do not put these tags -->
+<!-- script, body, head, meta, link, html, doctype -->
+
+<h2>pass data from class to template</h2>
+
+<h3>Interpolation</h3>
+
+<p>
+  {{title}}
+</p>
+
+<p>
+  {{ 1 + 20 }}
+
+  <!-- {{console.log}}
+
+  {{Math.random()}} -->
+</p>
+
+<p>
+  {{ randNumber() }}
+</p>
+
+<h1>what can we place or not in the interpolation?</h1>
+
+<p>
+  - grab public properties
+  - calculate a method
+  - no sideeffect => this.title = 'fdghgfdh';
+  - this.number++
+  - fast
+  - no globals
+</p>
+
+<h2>
+  another way to pass data from class to template
+</h2>
+
+<!-- <p  [propertyName]="non sideeffect expression"></p> -->
+
+<p [innerText]="sendTextToP()">
+
+</p>
+
+
+<by-child></by-child>
+
+<h2>
+  From template to class
+</h2>
+
+<p>
+  we pass events from template to class
+</p>
+
+<!-- <dom-element (eventName)="expression with sideeffects"> -->
+
+<p>
+  expression withe sideeffect can contain assignments
+</p>
+
+<button (click)="assignNewValueToTitle($event, 'stam')">
+  click
+</button>
+
+<p (mouseover)="title='hello from paragraph'">
+  hover over me
+</p>
+
+<input type="text" (input)="title=$event.target.value" />
+
+{{title}}
+
+<h2>
+  Two way binding
+</h2>
+
+<input type="text" [value]="myFirst2wayBinding" (input)="myFirst2wayBinding=$event.target.value" />
+
+{{myFirst2wayBinding}}
+
+<h3>
+  ngModel
+</h3>
+
+<input type="text" [(ngModel)]="myFirst2wayBinding"  />
+
+<h2>
+  transfer data from parent (app component) to child (by-child)
+</h2>
+
+<by-child helloWorld="this will be a string message" [fooAttr]="passToChild" ></by-child>
+
+<h2>
+  transfer event from child to parent
+</h2>
+
+<by-child (clickButton)="myFirst2wayBinding=$event"></by-child>
