@@ -99,4 +99,116 @@
   transfer event from child to parent
 </h2>
 
-<by-child (clickButton)="myFirst2wayBinding=$event"></by-child>
+<by-child #childInstance (clickButton)="myFirst2wayBinding=$event" (myEvent)="passClickEventFromChild($event)"></by-child>
+
+<h2>
+  Template reference variable (TRV)
+</h2>
+
+<p>
+  TRV
+  - instance to which it is attached
+  - if attached to html tag it will get the dom object instance
+  - if attached to my own tag that is translated to angular component, TRV will be populated with component instance.
+  - if attached to directive, TRV will have instance of directive class.
+  - we will use when we want direct access to classes.
+</p>
+
+<!-- <some-tag #variableName></some-tag> -->
+<!-- <some-tag #variableName="ngModel"></some-tag> -->
+
+{{pInstance.innerText}}
+
+<p #pInstance>
+  stam text in paragraph
+</p>
+
+<h3>
+  {{childInstance.callMeFromTRV()}}
+</h3>
+
+<h2>
+  *ngIf
+</h2>
+
+<p>
+  conditionally place something on the template
+</p>
+
+<!-- <some-tag *ngIf="expression no sideeffects => truthy/falsey"> -->
+
+<button (click)="isShowChild=!isShowChild" [disabled]="" >
+  toggle child
+</button>
+
+<by-child *ngIf="isShowChild"></by-child>
+
+<h2>
+  *ngFor
+</h2>
+
+<p>
+  will loop over iterable.
+  mostly iterate on array
+  will populate with each iteration a varialbe
+</p>
+
+<ul>
+  <li *ngFor="let itemTodo of todoList">
+    {{itemTodo}}
+  </li>
+</ul>
+
+<h3>ngClass</h3>
+
+<p 
+  [class.new-class]="isNewClass"
+  [class.hello]="world"
+  [class.foo]="bar"
+  >
+  add or remove class from dom element in dynamic way.
+</p>
+
+<p [ngClass]="{'new-class': true, 'hello': false, 'foo': true }">
+  with ngclass
+</p>
+
+<button (click)="isNewClass = !isNewClass">toggle new class</button>
+
+<h3>
+  ngStyle
+</h3>
+
+<p [style.background-color]="'red'">
+  change my style
+</p>
+
+<p [ngStyle]="{'background-color': 'blue'}">
+  with ngStyle
+</p>
+
+<h3>
+  Pipes
+</h3>
+
+<p>
+  helps transfer data type to be more readable for presentation to to the user
+
+  <!-- {{ someData | somePipeName:arg1:arg2:arg3 }} -->
+</p>
+
+<p>
+  {{myObj | json}}
+</p>
+
+<p>
+  {{myDate | date:'dd-MM-yy'}}
+</p>
+
+
+
+
+
+
+
+

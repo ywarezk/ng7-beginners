@@ -1,4 +1,4 @@
-<p>
+<p class="new-class">
   child works! {{helloAttr}} <br/>{{fooAttr}}
 </p>
 
@@ -6,7 +6,7 @@
 
 <img [src]="imgFromChildClass" />
 
-<button (click)="sendToParent()">
+<button (click)="sendToParent($event)">
   pass event to parent
   pass string with that event
 </button>

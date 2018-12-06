@@ -8,10 +8,12 @@ declare var require : any
   styleUrls: ['./child.component.css']
 })
 export class ChildComponent implements OnInit {
-  @Input('helloWorld') public helloAttr;
-  @Input() public fooAttr;
+  @Input('helloWorld') public helloAttr: string;
+  @Input() public fooAttr : string;
 
   @Output('clickButton') public sendToParentEvent: EventEmitter<string> = new EventEmitter()
+
+  @Output('myEvent') public sendEventToParent: EventEmitter<Event> = new EventEmitter()
 
 
   public imgFromChildClass = require('./logo.png');
@@ -25,8 +27,13 @@ export class ChildComponent implements OnInit {
   /**
    * send event to the parent
    */
-  sendToParent = () => {
+  sendToParent = (event) => {
     this.sendToParentEvent.emit('this will arrive in $event');
+    this.sendEventToParent.emit(event);
+  }
+
+  callMeFromTRV = (): string => {
+    return 'hello trv';
   }
 
 }
