@@ -16,5 +16,7 @@ export class AppComponent implements OnInit {
     this._http.get('https://nztodo.herokuapp.com/api/task/?format=json').subscribe((json: any) => {
       this.tasks = json;
     }, (err: Error) => {});
+
+    this._http.post('https://nztodo.herokuapp.com/api/task/?format=json', {title: '', description: '', group: '', when: (new Date()).toISOString})
   }
 }
