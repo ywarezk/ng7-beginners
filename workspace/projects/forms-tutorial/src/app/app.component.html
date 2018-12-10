@@ -1,0 +1,66 @@
+
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h1>
+        Template driven forms
+      </h1>
+
+      <p>
+        ngModel - two way binding
+        [(ngModel)]="variable"
+      </p>
+
+      <form #formInstance="ngForm">
+        <div class="form-group">
+          <label>Enter your name:</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            required
+            minlength="5"
+            maxlength="100"
+            pattern="[a-z]*"
+            #fullNameNgModel="ngModel"
+            [(ngModel)]="fullName" 
+            name="full-name"  />
+
+            <div *ngIf="fullNameNgModel.errors?.required" class="alert alert-danger">
+              This field is require
+            </div>
+            {{fullNameNgModel.errors | json}}
+        </div>
+
+        <div class="form-group">
+          <label>Email:</label>
+          <input 
+            type="email" 
+            class="form-control" 
+            required
+            email
+            [(ngModel)]="email" 
+            name="email"  />
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" [disabled]="formInstance.invalid">Submit</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+<h2>
+  ngForm
+</h2>
+
+<p>
+  selector: 'form'
+
+</p>
+
+
+
